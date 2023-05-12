@@ -5,7 +5,6 @@ import useSendbirdStateContext from '@sendbird/uikit-react/useSendbirdStateConte
 import { BOTS, userId } from '../consts';
 import botIcon from '../assets/icon-menu-bot.svg'
 
-
 type Props = {
   onCancel: () => void
 }
