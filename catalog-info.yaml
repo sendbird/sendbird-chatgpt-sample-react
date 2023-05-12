@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sendbird-chatgpt-sample-react
+  description: Sendbird chatgpt sample using react
+  annotations:
+    github.com/project-slug: sendbird/sendbird-chatgpt-sample-react
+spec:
+  type: library
+  lifecycle: production
+  owner: dep-client-platform
+  system: sendbird-supportchat
