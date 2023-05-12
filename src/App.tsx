@@ -1,35 +1,40 @@
+import '@sendbird/uikit-react/dist/index.css'
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import SendbirdProvider from '@sendbird/uikit-react/SendbirdProvider'
+import ChannelList from '@sendbird/uikit-react/ChannelList'
+import Channel from '@sendbird/uikit-react/Channel'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { appId, nickname, userId } from './consts'
+import { ChannelSettings } from '@sendbird/uikit-react'
 
+export default function Chat() {
+  const [currentChannelUrl, setCurrentChannelUrl] = useState<string>('')
+  const [showSettings, setShowSettings] = useState<boolean>(false)
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <SendbirdProvider appId={appId} userId={userId} nickname={nickname}>
+      <div id='sendbird-chatgpt-demo'>
+        <div id='sendbird-chatgpt-demo__channel-list'>
+          <ChannelList
+            onChannelSelect={(channel) => {
+              setCurrentChannelUrl(channel?.url)
+            }}
+          />
+        </div>
+        <div id='sendbird-chatgpt-demo__channel'>
+          <Channel channelUrl={currentChannelUrl} />
+        </div>
+        {
+          showSettings && (
+            <div id='sendbird-chatgpt-demo__settings'>
+              <ChannelSettings
+                onCloseClick={() => setShowSettings(false)}
+                channelUrl={currentChannelUrl}
+              />
+            </div>
+          )
+        }
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </SendbirdProvider>
   )
 }
-
-export default App
