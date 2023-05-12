@@ -5,7 +5,9 @@ export const BOTS = {
   gpt_bot2: 'Witty Bot',
   gpt_bot3: 'Sendbird Knowledge Bot',
 } as const
+export type BOTS_TYPES = keyof typeof BOTS
 
 export const userId = faker.string.uuid()
 export const nickname = faker.internet.userName()
+
 export const appId = import.meta.env.VITE_APP_ID ?? ''
