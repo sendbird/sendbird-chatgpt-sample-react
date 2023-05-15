@@ -6,6 +6,18 @@ It can provide your users with highly engaging and natural conversational experi
 It's integrated natively inside Sendbird so that you don't have to worry about developing and deploying OpenAI services separately.
 </p>
 
+<article align="center">
+  <img
+    src="./assets/create_channel.png"
+    height="250"
+    alt="Create channel"
+  />
+  <img
+    src="./assets/channel_demo.png"
+    height="250"
+    alt="Channel demo"
+  />
+</article>
 
 ## Requirements
 The minimum requirements for this sample are:
@@ -27,6 +39,42 @@ npm run dev
 ```
 
 For more information, see [our documentation](https://sendbird.com/docs/chat/v3/platform-api/bot/bot-overview#1-overview) and [our tutorial](https://sendbird.com/developer/tutorials/chatgpt-integration-build-a-chatgpt-powered-chatbot-part-1).
+
+## How to connect a channel to a bot
+* [See](./src/components/CreateChannel.tsx) `src/components/CreateChannel.tsx` for how to connect a channel to predefined chat bot.
+
+Simply:
+```
+const store = useSendbirdStateContext();
+const createChannel = sendBirdSelectors.getCreateGroupChannel(store);
+
+createChannel({
+  isDistinct: true,
+  invitedUserIds: [botId, userId],
+  operatorUserIds: [userId],
+}).finally(() => {
+  <!-- Callbacks -->
+  onCancel();
+});
+
+```
+
+## Disabled features
+For this demo, we not included the following features:
+* Message threading
+* Message reactions
+* Message search
+
+The following features are disabled in the SendbirdProvider:
+* Voice messages
+
+The following features are disabled using CSS:
+* Message edit
+* Message delete
+* Message delete
+* Channel moderation
+
+See `src/disabled-features.css` for features hidden using CSS.
 
 ## To deploy to gh-pages(For Sendbird Devs)
 
