@@ -2,7 +2,7 @@ import sendBirdSelectors from '@sendbird/uikit-react/sendbirdSelectors';
 import Modal from '@sendbird/uikit-react/ui/Modal'
 import useSendbirdStateContext from '@sendbird/uikit-react/useSendbirdStateContext'
 
-import { BOTS, userId } from '../consts';
+import { BOTS, userId, guestUserId } from '../consts';
 import botIcon from '../assets/icon-menu-bot.svg'
 
 type Props = {
@@ -32,8 +32,8 @@ export default function CreateChannel({ onCancel }: Props) {
                 onClick={() => {
                   createChannel({
                     isDistinct: true,
-                    invitedUserIds: [botId, userId],
-                    operatorUserIds: [userId],
+                    invitedUserIds: [botId, userId, guestUserId],
+                    operatorUserIds: [botId, userId, guestUserId],
                   }).finally(() => {
                     onCancel();
                   });
