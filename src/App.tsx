@@ -22,6 +22,7 @@ export default function Chat() {
       userId={userId}
       nickname={nickname}
       isVoiceMessageEnabled={false}
+      replyType="THREAD"
     >
       <div id='sendbird-chatgpt-demo'>
         <div id='sendbird-chatgpt-demo__channel-list'>
