@@ -13,7 +13,8 @@ export default function Chat() {
       appId={appId}
       userId={userId}
       nickname={nickname}
-      isVoiceMessageEnabled={false}
+      isVoiceMessageEnabled={true}
+      isMentionEnabled={true}
       breakpoint={isMobile}
       showSearchIcon={true}
       replyType="THREAD"
